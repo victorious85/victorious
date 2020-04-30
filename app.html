@@ -46,8 +46,8 @@
         if (iOS() && document.referrer.indexOf("apps.apple.com")>0){
             return;
         }
-        console.log('app://com.ftband.mono' + window.location.pathname + window.location.search);
-        window.location.replace('app://com.ftband.mono' + window.location.pathname + window.location.search);
+        console.log('go.diia.app://qrcode' + window.location.pathname + window.location.search);
+        window.location.replace('go.diia.app://qrcode' + window.location.pathname + window.location.search);
     };
     var triggerAppOpen = function () {
         openApp();
@@ -56,7 +56,7 @@
             console.log('new Date().valueOf() - now ', new Date().valueOf() - now);
             if (new Date().valueOf() - now > 1000) {
                 document.getElementById("result").textContent = "Expired. Redirected from" + document.referrer;
-                if (document.referrer.indexOf("mbnk.app/")==-1){
+                if (document.referrer.indexOf("go.diia.app/")==-1){
                     history.go(-1);
                 }
                 return;
