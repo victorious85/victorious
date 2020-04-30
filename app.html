@@ -1,0 +1,78 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="icon.ico">
+    <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<p>...</p>
+<a id="asb" style="display: none" href="https://apps.apple.com/ua/app/%D0%B4%D1%96%D1%8F/id1489717872?l=uk">
+    <img src="apple-app-store-badge.svg" alt="Apple App Store Badge">
+</a>
+<div id="result"></div>
+<script type="text/javascript">
+    // alert("Hello! iOs!!");
+    function iOS() {
+
+        var iDevices = [
+            'iPad Simulator',
+            'iPhone Simulator',
+            'iPod Simulator',
+            'iPad',
+            'iPhone',
+            'iPod'
+        ];
+
+        if (!!navigator.platform) {
+            while (iDevices.length) {
+                if (navigator.platform === iDevices.pop()) {
+                    console.log('navigator.platform', navigator.platform);
+                    return true;
+                }
+            }
+        }
+        console.log('iOS', false);
+
+        return false;
+    }
+
+    var openApp = function () {
+        if (iOS() && document.referrer.indexOf("apps.apple.com")>0){
+            return;
+        }
+        console.log('app://com.ftband.mono' + window.location.pathname + window.location.search);
+        window.location.replace('app://com.ftband.mono' + window.location.pathname + window.location.search);
+    };
+    var triggerAppOpen = function () {
+        openApp();
+        var now = new Date().valueOf();
+        setTimeout(function () {
+            console.log('new Date().valueOf() - now ', new Date().valueOf() - now);
+            if (new Date().valueOf() - now > 1000) {
+                document.getElementById("result").textContent = "Expired. Redirected from" + document.referrer;
+                if (document.referrer.indexOf("mbnk.app/")==-1){
+                    history.go(-1);
+                }
+                return;
+            }
+            if (iOS()) {
+                document.getElementById("asb").style.display="block";
+                console.log("iOS");
+            } else {
+                window.location.href = 'market://details?id=ua.gov.diia.app&hl=uk';
+            }
+        }, 250);
+    };
+
+    window.onload = triggerAppOpen;
+
+</script>
+</body>
+
+</html>
