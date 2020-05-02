@@ -17,7 +17,6 @@
 </a>
 <div id="result"></div>
 <script type="text/javascript">
-    // alert("Hello! iOs!!");
     function iOS() {
 
         var iDevices = [
@@ -37,8 +36,6 @@
                 }
             }
         }
-        console.log('iOS', false);
-
         return false;
     }
 
@@ -46,8 +43,8 @@
         if (iOS() && document.referrer.indexOf("apps.apple.com")>0){
             return;
         }
-        console.log('go.diia.app://qrcode' + window.location.pathname + window.location.search);
-        window.location.replace('go.diia.app://qrcode' + window.location.pathname + window.location.search);
+        console.log('diia.app://' + window.location.host + window.location.pathname + window.location.search);
+        window.location.replace('diia.app://' + window.location.host + window.location.pathname + window.location.search);
     };
     var triggerAppOpen = function () {
         openApp();
@@ -63,7 +60,6 @@
             }
             if (iOS()) {
                 document.getElementById("asb").style.display="block";
-                console.log("iOS");
             } else {
                 window.location.href = 'market://details?id=ua.gov.diia.app&hl=uk';
             }
@@ -74,5 +70,4 @@
 
 </script>
 </body>
-
 </html>
